@@ -1,11 +1,21 @@
+import sys
+import random
+
 #sets up the variables
 key = "false"
 safeCrack = "false"
 gun = "false"
 guard = "alive"
+safeCode = str((random.randrange(1,9999)))
+
 
 #start the game
-print("(Please note that all inputs need to be spelled correctly.)")
+print("Welcome to Escape the underground cell, a text-based adventure game by ninjasmosa.")
+print()
+print()
+print()
+# If you are forking this code feel free to uncomment this part then add your credits
+# print("[Credit goes here]")
 print()
 print("""You wake up in a prison cell. You have no idea how you got here. Maybe someone tried to take you in as a hostage. Anyway, now is not the time for questions, you need to do something.
 
@@ -37,6 +47,7 @@ def Corridor(): #the corridor
   print("You are inside a long corridor. A door guarded by a guard is west. The office is to the east.")
   print()
   choice2 = input("Will you go to the 'door' or the 'office'? ")
+  choice2 = choice2.lower()
   if choice2 == "office":
     Office() #enter the office
   elif choice2 == "door":
@@ -52,6 +63,7 @@ def Office(): #the office
   print("You are in a small office. A safe is inside the wall and a note lies on the desk.")
   print()
   choice3 = input("Will you look at the 'note' or inspect the 'safe'? Or will you 'leave'? ")
+  choice3 = choice3.lower()
   if choice3 == "note": #look at the note
     Note()
   elif choice3 == "safe": #look at the safe
@@ -69,7 +81,8 @@ def Office(): #the office
 def Note(): #read the note
   print()
   print("""The note says:
-  To get the safe code, add 350 to 5000, add another 2000 then subtract 1125.""")
+The safe code is""")
+  print(safeCode)
   Office()
 
 
@@ -96,8 +109,8 @@ def SafeCrack():
   if safeCrack == "false":
     print()
     print("Type in the code. Type 'leave' to walk away from the safe. ") #cracking the safe
-    choice5 = input()
-    if choice5 == "6225": #correct password, safe is cracked
+    choice5 = str(input())
+    if choice5 == str(safeCode): #correct password, safe is cracked
       safeCrack = "true"
       key = "true"
       gun = "true"
@@ -121,7 +134,7 @@ def Door():
     print("Just before you take the exit, you see a tall guard in front of the door. He is holding a large machete.")
     if gun == "true": #you have a gun
       print()
-      choice6 = input("Will you shoot the guard? 'Y' or 'N'")
+      choice6 = input("Will you shoot the guard? 'Y' or 'N' ")
       if choice6 == "Y": #you shoot the guard
         guard = "dead"
         print()
@@ -158,21 +171,21 @@ def Doorlock():
   print()
   print("You reach the door. It is locked.")
   if key == "true": #have a key
-    choice7 = input("Will you try unlocking the door with the key? 'Y or 'N'?")
+    choice7 = input("Will you try unlocking the door with the key? 'Y or 'N'? ")
     if choice7 == "Y": #unlock the door
       print()
       print("""The door unlocks. You hastily run outside.
       
       You are free!""")
       input("Press enter to end the game.") #ends the game
-      End()
+      sys.exit()
     elif choice7 == "y":
       print()
       print("""The door unlocks. You hastily run outside.
       
       You are free!""")
       input("Press enter to end the game.") #ends the game
-      End()
+      sys.exit()
     elif choice7 == "N": #don't unlock the door
       print()
       print("You decide to walk away from the door.")
