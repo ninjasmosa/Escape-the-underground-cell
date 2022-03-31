@@ -6,7 +6,7 @@ key = "false"
 safeCrack = "false"
 gun = "false"
 guard = "alive"
-safeCode = str((random.randrange(1,9999)))
+safeCode = str((random.randrange(1000,9999)))
 
 
 #start the game
